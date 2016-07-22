@@ -34,12 +34,12 @@ def getLengths(streamlines):
     min_len = min(length(streamlines))
     max_len = max(length(streamlines))
 
-#print('Nb. streamlines:')
-#   print(nb_stl)
-#   print('Min length:')
-#   print(min_len)
-#   print('Max length:')
-#print(max_len)
+    print('Nb. streamlines:')
+    print(nb_stl)
+    print('Min length:')
+    print(min_len)
+    print('Max length:')
+    print(max_len)
     
     return lengths
 
@@ -54,8 +54,8 @@ def filterLength(streamlines, thr_len):
 
     #new_streamlines_l = list(new_streamlines)
     new_lengths = list(length(new_streamlines))
-    # print('Nb. new streamlines:')
-    #print(len(new_streamlines))
+    print('Nb. new streamlines:')
+    print(len(new_streamlines))
     
     return new_streamlines
 
@@ -70,9 +70,9 @@ def computeQuickBundles(streamlines, threshold): #1.
     qb = QuickBundles(threshold)
     clusters = qb.cluster(streamlines)
 
-#print("Nb. clusters:", len(clusters))
+    print("Nb. clusters:", len(clusters))
     #print("Cluster sizes:", map(len, clusters))
-    #   print("Nb. small clusters:", sum(clusters < 10))
+    print("Nb. small clusters:", sum(clusters < 10))
     #print("Streamlines indices of the first cluster:\n", clusters[0].indices)
     #print("Centroid of the last cluster:\n", clusters[-1].centroid)
 
@@ -137,8 +137,8 @@ def filterSmallBundles(streamlines, clusters, len_thr): #10
                 smallbundles_list.append(clusters[i].indices[ii])
 
 
-#print 'Nb. streamlines from small bundles: '
-#   print len(smallbundles_list)
+    print 'Nb. streamlines from small bundles: '
+    print len(smallbundles_list)
     #print smallbundles_list
 
     new_streamlines = []
@@ -146,9 +146,18 @@ def filterSmallBundles(streamlines, clusters, len_thr): #10
         if i not in smallbundles_list:
             new_streamlines.append(streamlines[i])
 
-#print 'Nb. streamlines before filtering'
-#   print len(streamlines)
-#   print 'Nb. streamlines after filtering'
-#   print len(new_streamlines)
+    print 'Nb. streamlines before filtering'
+    print len(streamlines)    
+    print 'Nb. streamlines after filtering'
+    print len(new_streamlines)
     return new_streamlines
+
+
+# Print info on the number of streamlines, bundles and min and max length
+
+# In[ ]:
+
+def getData4Analyses(streamlines,clusters,lengths):
+    print('Nb. streamlines, Nb. Bundles, Min length, Max length')
+    print len(streamlines),len(clusters),min(lengths),max(lengths)
 
