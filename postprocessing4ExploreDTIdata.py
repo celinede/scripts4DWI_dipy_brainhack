@@ -81,7 +81,7 @@ def computeQuickBundles(streamlines, threshold): #1.
 
 # In[17]:
 
-def renderCentroids(clusters):
+def renderCentroids(streamlines, clusters):
     from dipy.viz import fvtk
     import numpy as np
     
@@ -100,9 +100,9 @@ def renderCentroids(clusters):
     fvtk.clear(ren)
 
 
-# In[18]:
+# In[1]:
 
-def renderBundles(clusters):
+def renderBundles(streamlines, clusters):
     from dipy.viz import fvtk
     import numpy as np
     
