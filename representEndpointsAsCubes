@@ -1,0 +1,23 @@
+#!/bin/bash
+
+m=~/Documents/meshgeometry/meshgeometry_mac;
+i=0;
+
+cat P32_F16_endpoints_fit.txt|while read l; do 
+	#echo $l; 
+
+	$m -i cube.ply -scale 0.1 -translate $l -o cube-$i.ply; 
+
+	if [ "$i" -eq "0" ]; then 
+		#$m -i P8_F10_mesh.ply -add cube-$i.ply -o m+c.ply
+		$m -i cube-$i.ply -o cubes_fit.ply
+	else
+		$m -i cubes_fit.ply -add cube-$i.ply -o cubes_fit.ply
+	fi
+	
+	rm cube-$i.ply; 
+	((i+=1));
+
+done
+
+echo 'done'
