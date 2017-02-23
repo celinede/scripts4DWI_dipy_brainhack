@@ -1,18 +1,26 @@
 #!/bin/bash
 
 m=~/Documents/meshgeometry/meshgeometry_mac;
+psub=~/Desktop/Ferret_ExplDTI/P2_F25/endpoints/;
 i=0;
+fin=P2_F25_endpoints.txt
+fout=cubes.ply
 
-cat P32_F16_endpoints_fit.txt|while read l; do 
+echo 'start'
+
+echo $psub$fin
+
+cat $psub$fin|while read l; do 
 	#echo $l; 
 
+	
 	$m -i cube.ply -scale 0.1 -translate $l -o cube-$i.ply; 
 
 	if [ "$i" -eq "0" ]; then 
 		#$m -i P8_F10_mesh.ply -add cube-$i.ply -o m+c.ply
-		$m -i cube-$i.ply -o cubes_fit.ply
+		$m -i cube-$i.ply -o $psub$fout
 	else
-		$m -i cubes_fit.ply -add cube-$i.ply -o cubes_fit.ply
+		$m -i $psub$fout -add cube-$i.ply -o $psub$fout
 	fi
 	
 	rm cube-$i.ply; 
