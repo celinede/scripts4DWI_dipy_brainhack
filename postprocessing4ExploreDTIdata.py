@@ -10,10 +10,10 @@ def importData(ftrk,ffa,fdwi):
     
     fa_img = nib.load(ffa)
     fa = fa_img.get_data()
-    affine = fa_img.get_affine()
 
     img = nib.load(fdwi)
     data = img.get_data()
+    affine = img.get_affine()
 
     from nibabel import trackvis
     streams, hdr = trackvis.read(ftrk)
@@ -72,7 +72,7 @@ def computeQuickBundles(streamlines, threshold): #1.
 
     print("Nb. clusters:", len(clusters))
     #print("Cluster sizes:", map(len, clusters))
-    print("Nb. small clusters:", sum(clusters < 10))
+    print("Nb. small clusters (<10 streamlines):", sum(clusters < 10))
     #print("Streamlines indices of the first cluster:\n", clusters[0].indices)
     #print("Centroid of the last cluster:\n", clusters[-1].centroid)
 
